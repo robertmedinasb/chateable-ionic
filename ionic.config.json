@@ -1,0 +1,7 @@
+{
+  "name": "chateable",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
