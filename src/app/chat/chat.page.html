@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-title>Chat</ion-title>
+  <ion-button (click)="logout()" expand="block" fill="clear" shape="round">
+    Log out </ion-button>
+</ion-header>
+<ion-list lines="full">
+  <header class="chat-header">
+    <div class="profile-wrapper">
+      <div class="avatar-image">
+        <img src="/assets/img/profile.jpeg" alt="">
+      </div>
+      <div class="profile-description">
+        <div id="show-username">
+
+        </div>
+        <p id="show-description">
+
+        </p>
+      </div>
+    </div>
+  </header>
+  <div class="chat-container">
+    <div class="chat-area">
+      <div class="chats">
+        <div class="chats" *ngFor="let message of messageList">
+          <div class="chat" *ngIf="message.owner != currentuser.$username">
+            <div class="chat-avatar">
+              <a class="avatar">
+                <img src="assets/img/profile.jpeg" class="circle" alt="avatar" />
+              </a>
+            </div>
+            <div class="chat-body">
+              <div class="chat-text">
+                <p>
+                  <span style="font-size: 10px;">
+                    {{message.owner}}:
+                  </span>
+                  <br>
+                  {{ message.body }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="chat chat-right" *ngIf="message.owner == currentuser.$username">
+            <div class="chat-avatar">
+              <a class="avatar">
+                <img src="/assets/img/profile.jpeg" class="circle" alt="avatar" />
+              </a>
+            </div>
+            <div class="chat-body">
+              <div class="chat-text">
+                <p>{{ message.body }}
+                  <button class="btn-delete" (click)="onDelete(message.key)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-list>
+<div class="chat-footer">
+  <form #messageForm="ngForm" (ngSubmit)="onSubmit(messageForm)" class="chat-input">
+    <input autocomplete="off" id="text" type=" text" placeholder="Type message here.." class="message mb-0" name="$body"
+      #$body="ngModel" [(ngModel)]="messageService.selectedMessage.$body" />
+    <button id="send" class="btn waves-effect waves-light send" type="submit">
+      SEND
+    </button>
+  </form>
+</div>

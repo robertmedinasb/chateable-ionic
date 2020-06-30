@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-title>Sign up</ion-title>
+</ion-header>
+
+<ion-list lines="full">
+
+  <form [formGroup]="userForm" (ngSubmit)="formSubmit()">
+    <div class="form-title">
+      <h5>Sign up</h5>
+    </div>
+    <ion-row>
+      <ion-item>
+        <ion-label position="floating">Username: <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="$username" type="text"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label position="floating">Email: <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="$email" type="email"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label position="floating">Password: <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="$password" type="password"></ion-input>
+      </ion-item>
+    </ion-row>
+    <div class="form-button">
+      <ion-row>
+        <ion-button block color="primary" type="submit" [disabled]="userForm.invalid">
+          Sign up
+        </ion-button>
+      </ion-row>
+      <ion-row>
+        <log-button routerLink="/login" routerLinkActive="login">Already have an account
+        </log-button>
+      </ion-row>
+    </div>
+  </form>
+</ion-list>
